@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, ScrollView, ActivityIndicator } from 'react-native';
-import useBusinesses from '../hooks/businesses';
-
-import Search from '../components/Search';
-import BusinessList from '../components/BusinessList';
+import { View, Text, ScrollView, ActivityIndicator, StyleSheet } from 'react-native';
+import styles from './styles';
+import useBusinesses from '../../hooks/businesses';
+import Search from '../../components/Search';
+import BusinessList from '../../components/BusinessList';
 
 const SearchScreen = () => {
   const [term, setTerm] = useState('');
@@ -43,17 +43,5 @@ const SearchScreen = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  page: {
-    backgroundColor: '#fff',
-    height: '100%'
-  },
-  errorMessage: {
-    color: '#e74c3c',
-    marginLeft: 15,
-    marginBottom: 15
-  }
-});
 
 export default SearchScreen;
