@@ -7,16 +7,12 @@ const http = axios.create({
   }
 });
 
-export const getBusinessList = term => {
-  return http.get('/search', {
-    params: {
-      limit: 50,
-      term,
-      location: 'são paulo'
-    }
-  });
-}
+export const getBusinessList = term => http.get('/search', {
+  params: {
+    limit: 50,
+    term,
+    location: 'são paulo'
+  }
+});
 
-export const getBusinessDetail = id => {
-  return http.get(`/${id}`);
-}
+export const getBusinessDetail = id => http.get(`/${id}`);

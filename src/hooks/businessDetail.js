@@ -11,6 +11,7 @@ export default (id) => {
 
     try {
       const response = await getBusinessDetail(id);
+      
       setBusiness(response.data);
       setErrorMessage('');
     } catch (error) {
