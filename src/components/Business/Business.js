@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { withNavigation } from 'react-navigation';
+import styles from './styles';
 
 const Business = ({ detail, navigation }) => {
   if (!detail.image_url) return null;
@@ -24,25 +25,5 @@ const Business = ({ detail, navigation }) => {
     </TouchableOpacity>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    marginLeft: 15
-  }, 
-  image: {
-    width: 250,
-    height: undefined,
-    aspectRatio: 100 / 75,
-    borderRadius: 5,
-    marginBottom: 10
-  },
-  title: {
-    fontWeight: 'bold',
-    marginBottom: 5
-  },
-  info: {
-    color: '#7f8c8d'
-  }
-});
 
 export default withNavigation(Business);

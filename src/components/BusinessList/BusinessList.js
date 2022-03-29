@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyleSheet, View, Text, FlatList } from 'react-native';
-import Business from './Business';
+import { View, Text, FlatList } from 'react-native';
+import styles from './styles';
+import Business from '../Business';
 
 const BusinessList = ({ title, items }) => {
   if (items.length === 0) return null;
@@ -23,17 +24,5 @@ const BusinessList = ({ title, items }) => {
     </View>
   )
 };
-
-const styles = StyleSheet.create({
-  container: {
-    marginBottom: 15
-  },  
-  title: {
-    marginLeft: 15,
-    marginBottom: 10,
-    fontSize: 24,
-    fontWeight: 'bold'
-  }
-});
 
 export default BusinessList;

@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
+import styles from './styles';
 
 const Information = ({ icon, children }) => {
   return (
@@ -10,19 +11,5 @@ const Information = ({ icon, children }) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginVertical: 20,
-  },
-  icon: {
-    fontSize: 64,
-    textAlign: 'center',
-    width: 100,
-    marginLeft: 15
-  }
-});
 
 export default Information;
