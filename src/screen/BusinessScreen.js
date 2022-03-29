@@ -1,10 +1,12 @@
 import React from 'react';
 import { StyleSheet, View, Text, ActivityIndicator, FlatList, Image } from 'react-native';
 import useBusinessDetail from '../hooks/businessDetail';
-import { FontAwesome } from '@expo/vector-icons';
+import Information from '../components/Information';
 
 const BusinessScreen = ({ navigation }) => {
   const [business, isLoading, errorMessage] = useBusinessDetail(navigation.getParam('id'));
+
+  const getCategoriesAsString = () => business.categories.map(item => item.title).join(' / ');
 
   if (isLoading) {
     return (
@@ -24,8 +26,13 @@ const BusinessScreen = ({ navigation }) => {
 
   return (
     <View>
-      <Text style={styles.title}>{ business.name }</Text>
-      <Text style={styles.rating}>{ business.rating } stars, { business.review_count } reviews</Text>
+      <Text style={styles.title}>
+        { business.name }
+      </Text>
+
+      <Text style={styles.rating}>
+        { business.rating } stars, { business.review_count } reviews
+      </Text>
 
       <FlatList horizontal
         showsHorizontalScrollIndicator={false}
@@ -37,24 +44,26 @@ const BusinessScreen = ({ navigation }) => {
       />      
       
       {business.display_phone
-        ? <View style={styles.infoContainer}>
-            <FontAwesome name='whatsapp' style={styles.icon} />
-            <Text style={styles.infoText}>{business.display_phone}</Text>
-          </View> : null}
+        ? <Information icon="whatsapp">
+            <Text style={styles.infoText}>
+              {business.display_phone}
+            </Text>
+          </Information> : null}
 
       {business.location && business.location.display_address
-        ? <View style={styles.infoContainer}>
-            <FontAwesome name='map-marker' style={styles.icon} />
+        ? <Information icon="map-marker">
             <FlatList
               data={business.location.display_address}
               renderItem={({item}) => <Text style={styles.infoText}>{item}</Text>}
               keyExtractor={item => item}
               scrollEnabled={false}
             />
-          </View> : null}
+          </Information> : null}
 
       {business.categories
-        ? <Text style={styles.categories}>{business.categories.map(item => item.title).join(' / ')}</Text> : null}
+        ? <Text style={styles.categories}>
+            {getCategoriesAsString()}
+          </Text> : null}
     </View>
   );
 };
@@ -85,19 +94,8 @@ const styles = StyleSheet.create({
     color: '#7f8c8d',
     marginLeft: 15
   },
-  infoContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginVertical: 20,
-  },
   infoText: {
     fontSize: 16
-  },
-  icon: {
-    fontSize: 64,
-    textAlign: 'center',
-    width: 100,
-    marginLeft: 15
   },
   categories: {
     fontSize: 16,
